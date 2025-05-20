@@ -5,40 +5,27 @@ import ProtectedRoutes from "./components/ProtectedRoutes"
 import Contact from "./pages/Contact"
 import About from "./pages/About"
 import Registration from "./pages/Registration"
-import MenuBar from "./components/Navbar"
+import AuthLayout from "./components/AuthLayout"
+import Form from "./pages/Form"
 function App() {
   return (
     <>
-    
       <BrowserRouter>
         <Routes>
           <Route path="/registration" element={<Registration />} />
-          <Route path="/login" element={
-            <Login />} />
+          <Route path="/login" element={<Login />} />
           <Route
-            path="/"
             element={
               <ProtectedRoutes>
-                <Home />
+                <AuthLayout />
               </ProtectedRoutes>
             }
-          />
-          <Route
-            path="/about"
-            element={
-              <ProtectedRoutes>
-                <About />
-              </ProtectedRoutes>
-            }
-          />
-          <Route
-            path="/contact"
-            element={
-              <ProtectedRoutes>
-                <Contact />
-              </ProtectedRoutes>
-            }
-          />
+          >
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/form" element={<Form />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </>

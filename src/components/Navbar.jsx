@@ -6,30 +6,42 @@ import AuthContext from "../contexts/AuthContext"
 import { useNavigate } from "react-router-dom"
 
 function Navbar() {
-  const { isAuthnticated, setIsAuthenticated } = useContext(AuthContext)
+  const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
   const navigate = useNavigate()
 
   const logout = () => {
-    localStorage.removeItem('user')
+    localStorage.removeItem("user")
     setIsAuthenticated(false)
-    navigate('/login')
+    navigate("/login")
+  }
 
+  const handleClick = () => {
+    if (isAuthenticated) {
+      logout()
+    } else {
+      navigate("/registration")
+    }
   }
   const menuItems = [
     {
       label: "Home",
       icon: "pi pi-home",
-      command: ()=> navigate('/')
+      command: () => navigate("/"),
     },
     {
       label: "About",
       icon: "pi pi-info-circle",
-       command: ()=> navigate('/about')
+      command: () => navigate("/about"),
     },
     {
       label: "Contact",
       icon: "pi pi-envelope",
-       command: ()=> navigate('/contact')
+      command: () => navigate("/contact"),
+    },
+     {
+      label: "Form",
+      icon: "pi pi-info-circle",
+      command: () => navigate("/form"),
     },
   ]
 
@@ -43,8 +55,8 @@ function Navbar() {
   const end = (
     <div className="flex justify-end items-center">
       <Button
-        label= 'Logout'
-        onClick={logout}
+        label={isAuthenticated ? "Logout" : "Registration"}
+        onClick={handleClick}
         pt={{
           label: {
             className:
@@ -52,7 +64,6 @@ function Navbar() {
           },
         }}
       />
-
     </div>
   )
 
@@ -72,9 +83,9 @@ function Navbar() {
             action: {
               className:
                 "flex items-center gap-1 text-white hover:text-blue-700",
-            },   //This is the container of icon+label
-            icon: { className: "text-lg text-white" }, 
-            label: { className: "text-lg font-semibold text-white" }
+            }, //This is the container of icon+label
+            icon: { className: "text-lg text-white" },
+            label: { className: "text-lg font-semibold text-white" },
           }}
         />
       </div>

@@ -5,12 +5,15 @@ import { useNavigate } from "react-router-dom"
 import InpuField from "../components/InpuField"
 import { Button } from "primereact/button"
 import * as Yup from "yup"
-import { Navigate} from 'react-router-dom'
+import { Navigate } from "react-router-dom"
 
 function Login() {
   const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
   const navigate = useNavigate()
 
+  if (isAuthenticated) {
+    return <Navigate to="/" />
+  }
 
   const initialValues = {
     email: "",
@@ -23,10 +26,6 @@ function Login() {
       .min(6, "Password must be contains at least 6 characters")
       .required("Password is required"),
   })
-
-    if (isAuthenticated) {
-    return <Navigate to="/" replace />
-  }
 
   const handleFormSubmission = (values) => {
     console.log("Form data", values)

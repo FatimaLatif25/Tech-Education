@@ -1,6 +1,6 @@
 function HeroImage( {title, imageUrl, subtitle} ) {
   return (
-     <div className="relative w-full max-w-screen overflow-hidden">
+     <div className="relative w-full max-w-screen overflow-hidden mb-8">
       <div className="w-full h-[450px] relative">
         <img
           src={imageUrl}

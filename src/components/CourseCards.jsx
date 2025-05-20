@@ -5,7 +5,7 @@ function CourseCards( { title, subTitle, image, content }) {
     <img src={image} alt={title} className="w-full h-48 object-cover rounded-md overflow-hidden"/>
   )
   return (
-    <div className="">
+    <div className="my-4 mx-4">
       <Card title= {title} subTitle={subTitle} header={header} 
 
       pt={{

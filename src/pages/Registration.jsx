@@ -4,6 +4,7 @@ import { Formik, Form } from "formik"
 import { useNavigate } from "react-router-dom"
 import InpuField from "../components/InpuField"
 import { Button } from "primereact/button"
+import { Navigate } from "react-router-dom"
 import * as Yup from "yup"
 
 function Registration() {
