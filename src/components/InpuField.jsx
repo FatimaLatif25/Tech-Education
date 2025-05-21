@@ -6,7 +6,7 @@ function InpuField({ label, name, type = "text" }) {
   return (
     <>
       <div className="mb-4">
-        <label htmlFor="email" className="block mb-1 text-md text-blue-400">
+        <label htmlFor={name} className="block mb-1 text-md text-blue-400">
           {label}
         </label>
         <Field name={name}>

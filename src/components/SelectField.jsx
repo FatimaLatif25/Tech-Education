@@ -2,7 +2,7 @@ import { Field, ErrorMessage } from "formik";
 const SelectField = ({ label, name, options = [] }) => {
   return (
     <>
-      <div>
+      <div className="mb-4">
         <label className="block font-medium text-blue-400 mb-3">{label}</label>
         <Field
           as="Select"
