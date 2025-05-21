@@ -7,7 +7,7 @@ import * as Yup from "yup"
 import SelectField from "../components/SelectField"
 import { Calendar } from "primereact/calendar"
 
-function ArrayFieldForm() {
+function FieldArrayForm() {
   const [selectedType, setSelectedType] = useState([])
   const [date, setDate] = useState(null)
 
@@ -221,4 +221,4 @@ function ArrayFieldForm() {
   )
 }
 
-export default ArrayFieldForm
+export default FieldArrayForm
