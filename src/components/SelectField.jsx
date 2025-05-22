@@ -11,8 +11,8 @@ const SelectField = ({ label, name, options = [] }) => {
         >
           <option value={""}>Select Option</option>
           {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
+            <option key={option.value} value={option.value}>
+              {option.label || option.value}
             </option>
           ))}
         </Field>

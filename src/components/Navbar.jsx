@@ -43,6 +43,11 @@ function Navbar() {
       icon: "pi pi-info-circle",
       command: () => navigate("/form"),
     },
+    {
+      label: "Dashboard",
+      icon: "pi pi-chart-line",
+      command: () => navigate("/dashboard")
+    }
   ]
 
   const start = (

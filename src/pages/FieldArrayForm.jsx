@@ -6,10 +6,14 @@ import { useState } from "react"
 import * as Yup from "yup"
 import SelectField from "../components/SelectField"
 import { Calendar } from "primereact/calendar"
+import DropdownOptionsModal from "../components/DropdownOptionsModal"
 
 function FieldArrayForm() {
   const [selectedType, setSelectedType] = useState([])
   const [date, setDate] = useState(null)
+  const [showModal, setShowModal] = useState(false)
+  const [inputValues, setInputValues] = useState("")
+  const [dropdownOptions, setDropdownOptions] = useState([])
 
   const fieldType = [
     { name: "Input", value: "input" },
@@ -56,6 +60,17 @@ function FieldArrayForm() {
   const handleDelete = (index) => {
     setSelectedType((prev) => prev.filter((_, i) => i !== index))
   }
+
+  const handleConfirmDropdownOptions = () => {
+    const dropdownOptions = inputValues
+      .split(",")
+      .map((val) => val.trim())
+      .filter((val) => val != "")
+      .map((option) => ({ label: option, value: option }))
+    setDropdownOptions((prev) => [...prev, dropdownOptions])
+    console.log("Dropdown Options", dropdownOptions)
+  }
+
   return (
     <>
       <div className="flex justify-center items-center mt-8">
@@ -143,9 +158,12 @@ function FieldArrayForm() {
                   </label>
                   <Dropdown
                     value={selectedType}
-                    onChange={(e) =>
+                    onChange={(e) => {
                       setSelectedType((prev) => [...prev, e.value])
-                    }
+                      if (e.value === "dropdown") {
+                        setShowModal(true)
+                      }
+                    }}
                     options={fieldType}
                     optionLabel="name"
                     optionValue="value"
@@ -170,6 +188,7 @@ function FieldArrayForm() {
                       <SelectField
                         name={`Dropdown ${index}`}
                         label={`Dropdown_${index + 1}`}
+                        options={dropdownOptions[index]}
                       />
                     )}
                     {field == "date" && (
@@ -210,6 +229,18 @@ function FieldArrayForm() {
                     root: {
                       className: "bg-blue-400 px-4 py-2 text-white rounded-md",
                     },
+                  }}
+                />
+                <DropdownOptionsModal
+                  showModal={showModal}
+                  setShowModal={setShowModal}
+                  inputValues={inputValues}
+                  setInputValues={setInputValues}
+                  onConfirm={handleConfirmDropdownOptions}
+                  onCancel={() => {
+                    setSelectedType((prev) =>
+                      prev.filter((_, i) => i !== prev.length - 1)
+                    )
                   }}
                 />
               </Form>

@@ -7,6 +7,7 @@ import About from "./pages/About"
 import Registration from "./pages/Registration"
 import AuthLayout from "./components/AuthLayout"
 import FieldArrayForm from "./pages/FieldArrayForm"
+import Dashboard from "./pages/Dashboard"
 function App() {
   return (
     <>
@@ -25,6 +26,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/form" element={<FieldArrayForm />} />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Route>
         </Routes>
       </BrowserRouter>

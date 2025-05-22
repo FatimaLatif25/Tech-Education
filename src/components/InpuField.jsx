@@ -2,7 +2,7 @@ import { Field } from "formik"
 import { InputText } from "primereact/inputtext"
 import { ErrorMessage } from "formik"
 
-function InpuField({ label, name, type = "text" }) {
+function InpuField({ label, name, type = "text", placeholder }) {
   return (
     <>
       <div className="mb-4">
@@ -14,6 +14,7 @@ function InpuField({ label, name, type = "text" }) {
             <InputText
               id={name}
               type={type}
+              placeholder={placeholder}
               {...field}
               pt={{
                 root: {
