@@ -1,3 +1,5 @@
+import { plugins } from "chart.js"
+import { plugin } from "postcss"
 import { Chart } from "primereact/chart"
 import { useState, useEffect } from "react"
 
@@ -6,6 +8,8 @@ function Dashboard() {
   const [barOptions, setBarOptions] = useState({})
   const [lineData, setLineData] = useState({})
   const [lineOptions, setLineOptions] = useState({})
+  const [pieData, setPieData] = useState({})
+  const [pieOptions, setPieOptions] = useState({})
 
   useEffect(() => {
     const documentStyle = getComputedStyle(document.documentElement)
@@ -111,6 +115,37 @@ function Dashboard() {
         },
       },
     })
+
+    //Student Ratio in IT
+    setPieData({
+      labels: ["Python", "Javascript", "Node js"],
+      datasets: [
+        {
+          label: "Student Ratio",
+          data: [308, 207, 507],
+          backgroundColor: [
+            documentStyle.getPropertyValue("--red-500"),
+            documentStyle.getPropertyValue("--yellow-500"),
+            documentStyle.getPropertyValue("--green-500"),
+          ],
+          hoverBackgroundColor: [
+            documentStyle.getPropertyValue("--red-400"),
+            documentStyle.getPropertyValue("--yellow-400"),
+            documentStyle.getPropertyValue("--green-400"),
+          ],
+        },
+      ],
+    })
+
+    setPieOptions({
+      plugins: {
+        legend: {
+          labels: {
+            usePointStyle: true,
+          },
+        },
+      },
+    })
   }, [])
 
   return (
@@ -123,7 +158,20 @@ function Dashboard() {
             options={barOptions}
             pt={{
               root: {
-                className: "w-full rounded-md",
+                className: "w-full h-full rounded-md",
+              },
+            }}
+          />
+        </div>
+
+        <div className="bg-gray-100 p-4 shadow-md rounded h-[300px]">
+          <Chart
+            type="line"
+            data={lineData}
+            options={lineOptions}
+            pt={{
+              root: {
+                className: "w-full h-full rounded-md",
               },
             }}
           />
@@ -131,12 +179,12 @@ function Dashboard() {
 
         <div className="bg-white-500 p-4 shadow rounded h-[300px]">
           <Chart
-            type="line"
-            data={lineData}
-            options={lineOptions}
+            type="pie"
+            data={pieData}
+            options={pieOptions}
             pt={{
               root: {
-                className: "w-full rounded-md",
+                className: "w-full h-full rounded-md",
               },
             }}
           />
